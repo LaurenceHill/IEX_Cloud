@@ -26,28 +26,31 @@ def income_statement_comparison(symbol, symbol2, option):
     periods = 12
     name = option
     st.subheader(name)
+    
+    income_statement = c.incomeStatement(symbol, period='quarter', last=periods)
 
-    redis_name = f'{symbol}_IS_financials_{periods}Q'
-    income_statement1 = r.get(redis_name)
+#  Redis does not work on here.
+#     redis_name = f'{symbol}_IS_financials_{periods}Q'
+#     income_statement1 = r.get(redis_name)
 
-    if income_statement1 is None:
-        income_statement = c.incomeStatement(symbol, period='quarter', last=periods)
-        r.set(redis_name, json.dumps(income_statement))
-    else:
-        income_statement1 = json.loads(r.get(redis_name))
+#     if income_statement1 is None:
+#         
+#         r.set(redis_name, json.dumps(income_statement))
+#     else:
+#         income_statement1 = json.loads(r.get(redis_name))
 
-    #income_statement1 = c.incomeStatement(symbol, period='quarter', last=periods)
-    #income_statement2 = c.incomeStatement(symbol2, period='quarter', last=periods)
+#     #income_statement1 = c.incomeStatement(symbol, period='quarter', last=periods)
+#     #income_statement2 = c.incomeStatement(symbol2, period='quarter', last=periods)
 
-    redis_name2 = f'{symbol2}_IS_financials_{periods}Q'
-    income_statement2 = r.get(redis_name2)
+#     redis_name2 = f'{symbol2}_IS_financials_{periods}Q'
+#     income_statement2 = r.get(redis_name2)
 
-    if income_statement2 is None:
-        income_statement = c.incomeStatement(symbol2, period='quarter', last=periods)
-        r.set(redis_name2, json.dumps(income_statement))
-        r.expire(redis_name2,timedelta(seconds=24*60*60))
-    else:
-        income_statement2 = json.loads(r.get(redis_name2))
+#     if income_statement2 is None:
+#         income_statement = c.incomeStatement(symbol2, period='quarter', last=periods)
+#         r.set(redis_name2, json.dumps(income_statement))
+#         r.expire(redis_name2,timedelta(seconds=24*60*60))
+#     else:
+#         income_statement2 = json.loads(r.get(redis_name2))
 
     total = []
     total2 = []
