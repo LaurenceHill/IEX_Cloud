@@ -186,36 +186,38 @@ if screen == 'Financials: Reported':
 
 
 if screen == 'Valuations: Models':
+    st.write('Unavaliable - Access not allowed')
+# No Redis
+#     option = st.selectbox('Models:',
+#                           ('Dupont', 'CAGR', 'FCFE discount Model', 'Gordon Growth Model', '2 Stage Growth Model',
+#                            'DDM'))
 
-    option = st.selectbox('Models:',
-                          ('Dupont', 'CAGR', 'FCFE discount Model', 'Gordon Growth Model', '2 Stage Growth Model',
-                           'DDM'))
+#     if option == 'Dupont':
+#         st.header('DuPont: 5 Phase')
+#         df = pd.DataFrame(redis_function.funVal(symbol, 12))
+#         # st.write(df)
+#         df = df.set_index('filingDate')
 
-    if option == 'Dupont':
-        st.header('DuPont: 5 Phase')
-        df = pd.DataFrame(redis_function.funVal(symbol, 12))
-        # st.write(df)
-        df = df.set_index('filingDate')
+#         options = st.multiselect('Dupont:', (
+#         'ebitToRevenue', 'assetTurnover', 'assetsToEquity', 'interestBurden', 'taxBurden', ))
 
-        options = st.multiselect('Dupont:', (
-        'ebitToRevenue', 'assetTurnover', 'assetsToEquity', 'interestBurden', 'taxBurden', ))
+#         valuations = df[options]
+#         if valuations.empty:
+#             st.write(' ')
+#         else:
+#             #st.write(valuations)
+#             st.line_chart(valuations)
 
-        valuations = df[options]
-        if valuations.empty:
-            st.write(' ')
-        else:
-            #st.write(valuations)
-            st.line_chart(valuations)
+#         dupont = df['ebitToRevenue']*df['assetTurnover']*df['assetsToEquity']*df['interestBurden']*df['taxBurden']
+#         st.subheader("DuPont: 5 Phase")
+#         st.line_chart(dupont)
 
-        dupont = df['ebitToRevenue']*df['assetTurnover']*df['assetsToEquity']*df['interestBurden']*df['taxBurden']
-        st.subheader("DuPont: 5 Phase")
-        st.line_chart(dupont)
+#     if option == 'CAGR':
+#         option = st.selectbox('Income Statement: Category',
+#                               ('totalRevenue', 'grossProfit', 'operatingIncome', 'operatingExpense', 'netIncome'))
+#         quants.CAGR(symbol, option)
 
-    if option == 'CAGR':
-        option = st.selectbox('Income Statement: Category',
-                              ('totalRevenue', 'grossProfit', 'operatingIncome', 'operatingExpense', 'netIncome'))
-        quants.CAGR(symbol, option)
-
+#   Old code
     # if option == 'DuPont Manual':
     #     st.header('Dupont: 3 Phase')
     #     st.write('ROE = Net Income Margin x Asset Turnover x Financial Leverage')
@@ -280,76 +282,80 @@ if screen == 'Valuations: Models':
     # # st.write(stats)
 
 if screen == 'Valuations: Fundamentals':
-    df = pd.DataFrame(redis_function.funVal(symbol, 12))
-    #st.write(df)
-    df = df.set_index('filingDate')
-    params = list(df.columns)
+    st.write('Unavaliable - Access not allowed')
+  # No Redis
+#     df = pd.DataFrame(redis_function.funVal(symbol, 12))
+#     #st.write(df)
+#     df = df.set_index('filingDate')
+#     params = list(df.columns)
 
-    options = st.multiselect('Parameter:',(params))
+#     options = st.multiselect('Parameter:',(params))
 
-    valuations = df[options]
-    if valuations.empty:
-        st.write(' ')
-    else:
-        st.write(valuations)
-        st.line_chart(valuations)
+#     valuations = df[options]
+#     if valuations.empty:
+#         st.write(' ')
+#     else:
+#         st.write(valuations)
+#         st.line_chart(valuations)
 
 if screen == 'Valuations: Time-series':
-    df = pd.DataFrame(redis_function.funVal(symbol,12))
-    #st.write(df)
-    s_date = df['filingDate'][len(df)-1]
-    df = df.set_index('filingDate')
+  st.write('Unavaliable - Access not allowed')
+ # No Redis
+#     df = pd.DataFrame(redis_function.funVal(symbol,12))
+#     #st.write(df)
+#     s_date = df['filingDate'][len(df)-1]
+#     df = df.set_index('filingDate')
 
-    options = st.multiselect('Valuations & Yields:', ('evToSales', 'evToEbit', 'evToEbitda', 'pToE', 'pToBv', 'fcfYield', 'dividendYield', 'earningsYield'))
+#     options = st.multiselect('Valuations & Yields:', ('evToSales', 'evToEbit', 'evToEbitda', 'pToE', 'pToBv', 'fcfYield', 'dividendYield', 'earningsYield'))
 
-    valuations = df[options]
-    if valuations.empty:
-        st.write(' ')
-    else:
-        #st.write(valuations)
-        st.line_chart(valuations)
+#     valuations = df[options]
+#     if valuations.empty:
+#         st.write(' ')
+#     else:
+#         #st.write(valuations)
+#         st.line_chart(valuations)
 
-    options_g = st.multiselect('Growth:', ('revenueGrowth','netIncomeGrowth', 'ebitGrowth', 'ebitdaGrowth',
-                                           'freeCashFlowGrowth', 'operatingCashFlowGrowth', 'netWorkingCapitalGrowth'))
-    growth = df[options_g]
-    if growth.empty:
-        st.write(' ')
-    else:
-        #st.write(growth)
-        st.line_chart(growth)
+#     options_g = st.multiselect('Growth:', ('revenueGrowth','netIncomeGrowth', 'ebitGrowth', 'ebitdaGrowth',
+#                                            'freeCashFlowGrowth', 'operatingCashFlowGrowth', 'netWorkingCapitalGrowth'))
+#     growth = df[options_g]
+#     if growth.empty:
+#         st.write(' ')
+#     else:
+#         #st.write(growth)
+#         st.line_chart(growth)
 
-    options_m = st.multiselect('Margin:', ('ebitToRevenue', 'ebitMargin', 'freeCashFlowToRevenue', 'netIncomeToRevenue',
-                                           'operatingCFToRevenue', 'operatingIncomeToRevenue','profitGrossToRevenue',
-                                           'sgaToRevenue'))
-    margin = df[options_m]
-    if margin.empty:
-        st.write(' ')
-    else:
-        #st.write(margin)
-        st.line_chart(margin)
+#     options_m = st.multiselect('Margin:', ('ebitToRevenue', 'ebitMargin', 'freeCashFlowToRevenue', 'netIncomeToRevenue',
+#                                            'operatingCFToRevenue', 'operatingIncomeToRevenue','profitGrossToRevenue',
+#                                            'sgaToRevenue'))
+#     margin = df[options_m]
+#     if margin.empty:
+#         st.write(' ')
+#     else:
+#         #st.write(margin)
+#         st.line_chart(margin)
 
-    options_r = st.multiselect('Returns:', ('roic', 'roce'))
-    returns1 = df[options_r]
-    if returns1.empty:
-        st.write(' ')
-    else:
-        #st.write(returns1)
-        st.line_chart(returns1)
+#     options_r = st.multiselect('Returns:', ('roic', 'roce'))
+#     returns1 = df[options_r]
+#     if returns1.empty:
+#         st.write(' ')
+#     else:
+#         #st.write(returns1)
+#         st.line_chart(returns1)
 
-    options_p = st.multiselect('Price:', ('pToE', 'ptoBV', 'priceToRevenue'))
-    returns = df[options_p]
-    if returns.empty:
-        st.write(' ')
-    else:
-        #st.write(returns)
-        st.line_chart(returns)
+#     options_p = st.multiselect('Price:', ('pToE', 'ptoBV', 'priceToRevenue'))
+#     returns = df[options_p]
+#     if returns.empty:
+#         st.write(' ')
+#     else:
+#         #st.write(returns)
+#         st.line_chart(returns)
 
-    chart = stock.get_chart()
+#     chart = stock.get_chart()
 
-    chart = pd.DataFrame(chart, columns=['date', 'close'])
-    # df[df['date'] < s_date] #drop after filing date
-    chart = chart.rename(columns={'date': 'index'}).set_index('index')
-    st.line_chart(chart,use_container_width=True)
+#     chart = pd.DataFrame(chart, columns=['date', 'close'])
+#     # df[df['date'] < s_date] #drop after filing date
+#     chart = chart.rename(columns={'date': 'index'}).set_index('index')
+#     st.line_chart(chart,use_container_width=True)
 
     # brush = alt.selection(type='interval', encodings=['x'])
     #
