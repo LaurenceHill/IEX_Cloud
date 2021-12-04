@@ -27,7 +27,10 @@ def income_statement_comparison(symbol, symbol2, option):
     name = option
     st.subheader(name)
     
-    income_statement = c.incomeStatement(symbol, period='quarter', last=periods)
+    income_statement1 = c.incomeStatement(symbol, period='quarter', last=periods)
+    income_statement2 = c.incomeStatement(symbol2, period='quarter', last=periods)
+    #income_statement1 = c.incomeStatement(symbol, period='quarter', last=periods)
+    #income_statement2 = c.incomeStatement(symbol2, period='quarter', last=periods)
 
 #  Redis does not work on here.
 #     redis_name = f'{symbol}_IS_financials_{periods}Q'
@@ -38,9 +41,6 @@ def income_statement_comparison(symbol, symbol2, option):
 #         r.set(redis_name, json.dumps(income_statement))
 #     else:
 #         income_statement1 = json.loads(r.get(redis_name))
-
-#     #income_statement1 = c.incomeStatement(symbol, period='quarter', last=periods)
-#     #income_statement2 = c.incomeStatement(symbol2, period='quarter', last=periods)
 
 #     redis_name2 = f'{symbol2}_IS_financials_{periods}Q'
 #     income_statement2 = r.get(redis_name2)
