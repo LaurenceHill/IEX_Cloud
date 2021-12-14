@@ -52,10 +52,10 @@ def cash_flow_comparison(symbol, symbol2, option):
     if total[0] == 0:
         st.write('Zero value involved cant retrieve CAGR')
     else:
-        CAGR = (((abs(total[-1]) / abs(total[0])) ** (1 / 4)) - 1) * 100
+        CAGR = (((abs(total[-1]) / abs(total[0])) ** (1 / 3)) - 1) * 100
         CAGR = round(CAGR, 2)
         st.write('Compounded Annual Growth Rate (%):', CAGR, symbol)
-        CAGR2 = (((abs(total2[-1]) / abs(total2[0])) ** (1 / 4)) - 1) * 100
+        CAGR2 = (((abs(total2[-1]) / abs(total2[0])) ** (1 / 3)) - 1) * 100
         CAGR2 = round(CAGR2, 2)
         st.write('Compounded Annual Growth Rate (%):', CAGR2, symbol2)
 
