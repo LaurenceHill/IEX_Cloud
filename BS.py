@@ -53,10 +53,10 @@ def balance_sheet_comparison(symbol, symbol2, option):
     # Must Divide by 2 !!!!!! must check
     df = df / 2
 
-    CAGR = (((abs(total[-1]) / abs(total[0])) ** (1 / 4)) - 1) * 100
+    CAGR = (((abs(total[-1]) / abs(total[0])) ** (1 / 3)) - 1) * 100
     CAGR = round(CAGR, 2)
     st.write('Compounded Annual Growth Rate (%):', CAGR, symbol)
-    CAGR2 = (((abs(total2[-1]) / abs(total2[0])) ** (1 / 4)) - 1) * 100
+    CAGR2 = (((abs(total2[-1]) / abs(total2[0])) ** (1 / 3)) - 1) * 100
     CAGR2 = round(CAGR2, 2)
     st.write('Compounded Annual Growth Rate (%):', CAGR2, symbol2)
 
